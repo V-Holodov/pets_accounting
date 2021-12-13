@@ -1,2 +1,2 @@
-# pets_accounting
-Тестовое задание для doubletapp
+# Animal-Accounting
+ REST API для ведения учета питомцев (собак и кошек) 
