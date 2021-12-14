@@ -11,9 +11,10 @@ class PetPhotoSerializer(serializers.ModelSerializer):
         fields = ("id", "url")
 
     def to_internal_value(self, data):
-        resource_data = data['file']
+        resource_data = data["file"]
 
         return super().to_internal_value(resource_data)
+
 
 class PetSerializer(serializers.ModelSerializer):
     photos = PetPhotoSerializer(many=True, read_only=True)
@@ -21,6 +22,7 @@ class PetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pet
         fields = ("id", "name", "age", "type", "photos", "created_at")
+
 
 class PhotoLoadSerializer(serializers.Serializer):
     file = serializers.ImageField()
