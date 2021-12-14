@@ -1,15 +1,16 @@
 from pathlib import Path
+
 import environ
 
 root = environ.Path(__file__) - 2
 env = environ.Env()
-environ.Env.read_env(root('.env'))
+environ.Env.read_env(root(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = env.str("SECRET_KEY")
 
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = []
 
@@ -22,7 +23,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "rest_framework_api_key",
 ]
 
 MIDDLEWARE = [
@@ -93,8 +93,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 20,
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework_api_key.permissions.HasAPIKey",
-    ]
+        "config.permissions.Check_API_KEY_Auth",
+    ],
 }
 
-API_KEY_CUSTOM_HEADER = env.str('API_KEY_CUSTOM_HEADER')
+API_KEY = env.str("API_KEY_SECRET")
