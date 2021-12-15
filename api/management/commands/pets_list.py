@@ -9,11 +9,15 @@ from api.serializers import PetSerializer
 
 
 class Command(BaseCommand):
+    """Uploading pets from the command line to stdout in JSON format."""
+
     help = "Displaying a list of pets in stdout"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--has-photos", action="store_true", help="Returns entries with photos"
+            "--has-photos",
+            action="store_true",
+            help="Returns entries with photos"
         )
 
     def handle(self, *args, **kwargs):

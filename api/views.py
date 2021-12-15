@@ -61,10 +61,14 @@ class PetViewSet(
 
     @action(detail=True, methods=["post"])
     def photo(self, request, pk=None, format=None):
+        """Additional action to add a pet photo."""
         pet = get_object_or_404(Pet, pk=pk)
         serializer = PhotoLoadSerializer(data=request.data)
         if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+                )
         pet_photo = PetPhoto.objects.create(
             photo=serializer.validated_data["file"], pet=pet
         )
