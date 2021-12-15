@@ -5,6 +5,7 @@ from api.models import Pet, PetPhoto
 
 class PetPhotoSerializer(serializers.ModelSerializer):
     """Serialization of pet photos."""
+
     url = serializers.ImageField(source="photo")
 
     class Meta:
@@ -19,6 +20,7 @@ class PetPhotoSerializer(serializers.ModelSerializer):
 
 class PetSerializer(serializers.ModelSerializer):
     """Pet sterilization."""
+
     photos = PetPhotoSerializer(many=True, read_only=True)
 
     class Meta:
@@ -28,6 +30,7 @@ class PetSerializer(serializers.ModelSerializer):
 
 class PhotoLoadSerializer(serializers.Serializer):
     """Deserialization of the uploaded pet photo."""
+
     file = serializers.ImageField()
 
 

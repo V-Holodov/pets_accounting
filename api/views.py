@@ -5,12 +5,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from api.models import Pet, PetPhoto
-from api.serializers import (
-    IdsSerializer,
-    PetPhotoSerializer,
-    PetSerializer,
-    PhotoLoadSerializer,
-)
+from api.serializers import (IdsSerializer, PetPhotoSerializer, PetSerializer,
+                             PhotoLoadSerializer)
 
 ERROR = "Pet with the matching ID was not found."
 
@@ -66,8 +62,7 @@ class PetViewSet(
         serializer = PhotoLoadSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
                 )
         pet_photo = PetPhoto.objects.create(
             photo=serializer.validated_data["file"], pet=pet
