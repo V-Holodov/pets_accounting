@@ -5,8 +5,12 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from api.models import Pet, PetPhoto
-from api.serializers import (IdsSerializer, PetPhotoSerializer, PetSerializer,
-                             PhotoLoadSerializer)
+from api.serializers import (
+    IdsSerializer,
+    PetPhotoSerializer,
+    PetSerializer,
+    PhotoLoadSerializer,
+)
 
 ERROR = "Pet with the matching ID was not found."
 
