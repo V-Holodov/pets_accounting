@@ -1,0 +1,25 @@
+name: Testing Flow
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+        poetry install
+        
+    - name: Lint with flake8
+      run: flake8 .
+
+    - name: Test with pytest
+      run: pytest
