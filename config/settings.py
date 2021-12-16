@@ -13,7 +13,7 @@ SECRET_KEY = env.str("SECRET_KEY", default="TEST_SECRET_KEY")
 
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = env.str(("ALLOWED_HOSTS"), default="localhost 127.0.0.1").split(" ")
 
 INSTALLED_APPS = [
     "api.apps.ApiConfig",

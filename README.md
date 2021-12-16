@@ -2,6 +2,7 @@
 
 
 ![example workflow](https://github.com/v-holodov/pets_accounting/actions/workflows/main.yml/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
 
 ## Описание
 **Pets-Accounting** - REST API для ведения учета питомцев (собак и кошек). Позволяет добовлять питомцев и фотографии к ним, получать список питомцев и удалять питомцев по списку. Реализована возможность выгрузить список питомцев в json через командную строку
