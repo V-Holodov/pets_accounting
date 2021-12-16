@@ -1,10 +1,11 @@
 import environ
 import pytest
 from rest_framework.test import APIClient
+from config import settings
 
 env = environ.Env()
 
-API_KEY = env.str("API_KEY_SECRET")
+API_KEY = settings.API_KEY
 
 
 @pytest.fixture
