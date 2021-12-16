@@ -41,7 +41,7 @@ class PetPhoto(models.Model):
     )
     pet = models.ForeignKey(
         Pet, on_delete=models.CASCADE, related_name="photos"
-        )
+    )
 
     class Meta:
         verbose_name = "Фотография питомца"

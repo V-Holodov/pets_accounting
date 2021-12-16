@@ -15,7 +15,8 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--has-photos", action="store_true", help="Returns entries with photos"
+            "--has-photos", action="store_true",
+            help="Returns entries with photos"
         )
 
     def handle(self, *args, **kwargs):

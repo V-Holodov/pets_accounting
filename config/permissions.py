@@ -2,7 +2,7 @@ from django.conf import settings
 from rest_framework.permissions import BasePermission
 
 
-class Check_API_KEY_Auth(BasePermission):
+class CheckAPIKEYAuth(BasePermission):
     """Permissions based on API KEY authentication."""
 
     def has_permission(self, request, view):

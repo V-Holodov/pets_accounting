@@ -63,8 +63,9 @@ class PetViewSet(
         serializer = PhotoLoadSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST
-                )
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+            )
         pet_photo = PetPhoto.objects.create(
             photo=serializer.validated_data["file"], pet=pet
         )

@@ -21,9 +21,7 @@ class TesterPetsRestAPI:
         )
 
         count_pets_after = Pet.objects.count()
-        assert count_pets_after == count_pets_before + 1, (
-            "питомец не добавляется в БД"
-            )
+        assert count_pets_after == count_pets_before + 1, "питомец не добавляется в БД"
 
         invalid_data = {"name": "Adel", "age": "str", "type": "dog"}
         response = client.post(
@@ -103,6 +101,4 @@ class TesterPetsRestAPI:
         )
 
         count_pets_after = Pet.objects.count()
-        assert count_pets_after == count_pets_before - 1, (
-            "питомец не удаляется из БД"
-            )
+        assert count_pets_after == count_pets_before - 1, "питомец не удаляется из БД"
