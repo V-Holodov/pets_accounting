@@ -1,6 +1,7 @@
 import environ
 import pytest
 from rest_framework.test import APIClient
+
 from config import settings
 
 env = environ.Env()
