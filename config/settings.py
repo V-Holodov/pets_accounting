@@ -9,7 +9,7 @@ environ.Env.read_env(root(".env"))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env.str("SECRET_KEY", default="Test")
+SECRET_KEY = env.str("SECRET_KEY", default="TEST_SECRET_KEY")
 
 DEBUG = env.bool("DEBUG", default=False)
 
@@ -99,7 +99,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-API_KEY = env.str("API_KEY_SECRET")
+API_KEY = env.str("API_KEY_SECRET", default="TEST_API_KEY_SECRET")
 
 PATH_LOG = os.path.join(BASE_DIR, "logs")
 if not os.path.exists(PATH_LOG):
