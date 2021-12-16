@@ -1,7 +1,7 @@
 # Учет питомцев "Pets-Accounting"
 
 
-![example workflow](https://github.com/v-holodov/pets_accounting/actions/workflows/fg_workflow.yml/badge.svg)
+![example workflow](https://github.com/v-holodov/pets_accounting/actions/workflows/main.yml/badge.svg)
 
 ## Описание
 **Pets-Accounting** - REST API для ведения учета питомцев (собак и кошек). Позволяет добовлять питомцев и фотографии к ним, получать список питомцев и удалять питомцев по списку. Реализована возможность выгрузить список питомцев в json через командную строку

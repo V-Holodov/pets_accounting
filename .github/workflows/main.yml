@@ -16,6 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install poetry==1.1.11
+        pip install flake8 pytest
         poetry install
         
     - name: Lint with flake8
