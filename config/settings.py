@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import environ
+import environ, os
 
 root = environ.Path(__file__) - 2
 env = environ.Env()
@@ -55,12 +55,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+DATABASES = {'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')}
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'vol/web/media')
+MEDIA_URL = env.str('MEDIA_URL', default='/media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'vol/web/static')
+STATIC_URL = env.str('STATIC_URL', default='/static/')
+TEMPLATES_DIR = root('templates')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,3 +99,42 @@ REST_FRAMEWORK = {
 }
 
 API_KEY = env.str("API_KEY_SECRET")
+
+PATH_LOG = os.path.join(BASE_DIR, 'logs')
+if not os.path.exists(PATH_LOG):
+    os.mkdir('logs')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {'format': '%(name)-12s %(levelname)-8s %(message)s'},
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': os.path.join(PATH_LOG, 'logs.log'),
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': True
+        },
+        'django.request': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file']
+        }
+    },
+}

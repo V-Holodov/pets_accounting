@@ -8,7 +8,7 @@ from api.models import Pet, PetPhoto
 from api.serializers import (IdsSerializer, PetPhotoSerializer, PetSerializer,
                              PhotoLoadSerializer)
 
-ERROR = "Pet with the matching ID was not found."
+ERROR_TEXT = "Pet with the matching ID was not found."
 
 
 class PetViewSet(
@@ -20,6 +20,7 @@ class PetViewSet(
     serializer_class = PetSerializer
 
     def get_queryset(self):
+        """Output based on the presence of photos based on query parameters."""
         queryset = Pet.objects.all()
         has_photos = self.request.query_params.get("has_photos")
         if has_photos == "True":
@@ -48,7 +49,7 @@ class PetViewSet(
                 result.delete()
                 count_del += 1
             except ObjectDoesNotExist:
-                error = {"id": id, "error": ERROR}
+                error = {"id": id, "error": ERROR_TEXT}
                 errors.append(error)
         return_dict = {"deleted": count_del}
         if errors:

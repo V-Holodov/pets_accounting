@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:12.4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  back:
+    build:
+      dockerfile: Dockerfile
+      context: .    
+    restart: always
+    expose:
+      - "8000" 
+    volumes:
+      - static_volume:/pets_app/vol/web/
+      - ./logs:/pets_app/logs
+    env_file:
+      - ./.env
+
+  nginx_back:
+    image: nginx:1.19.3
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/vol/static/
+    depends_on:
+      - back
+
+volumes:
+  static_volume:
+  postgres_data:
+
